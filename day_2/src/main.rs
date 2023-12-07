@@ -90,10 +90,45 @@ fn main() -> io::Result<()> {
     }
 
     println!("{}", total_score);
-    
 
-    // get highest of each color
-    // multiply them together
+    let mut multiplied_values: Vec<usize> = Vec::new();
+    
+    for game in &games {
+        let mut highest_red: usize = 0;
+        let mut highest_blue: usize = 0;
+        let mut highest_green: usize = 0;
+
+        for result in &game.game_results {
+            if let Some(&value) = result.get("red") {
+                if highest_red < value {
+                    highest_red = value;
+                }
+            }    
+            
+            if let Some(&value) = result.get("blue") {
+                if highest_blue < value {
+                    highest_blue = value;
+                }
+            }    
+            
+            if let Some(&value) = result.get("green") {
+                if highest_green < value {
+                    highest_green = value;
+                }
+            }    
+        }
+
+        let answer: usize = highest_green * highest_blue * highest_red;
+        multiplied_values.push(answer);
+    }
+
+    let mut answer = 0;
+
+    for number in multiplied_values {
+        answer += number;
+    }
+
+    println!("{}", answer);
 
     Ok(())
 } 
