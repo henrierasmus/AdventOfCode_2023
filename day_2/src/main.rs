@@ -85,10 +85,11 @@ fn main() -> io::Result<()> {
 
     let mut total_score = 0;
     for game in filtered_result {
-        println!("{}", game.id);
         total_score += game.id;
     }
 
+    println!("====================");
+    println!("Part 1:");
     println!("{}", total_score);
 
     let mut multiplied_values: Vec<usize> = Vec::new();
@@ -128,6 +129,8 @@ fn main() -> io::Result<()> {
         answer += number;
     }
 
+    println!("===================");
+    println!("Part 2:");
     println!("{}", answer);
 
     Ok(())
